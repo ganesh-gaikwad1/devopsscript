@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/ReyazShaik/java-project-maven-new.git'
+            }
+        }
+        stage('compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('test') {
+            steps {
+                withEnv(['MAVEN_OPTS=-Djava.io.tmpdir=/var/tmp']) {
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('artifacts analysis') {
+            steps {
+                withEnv(['MAVEN_OPTS=-Djava.io.tmpdir=/var/tmp']) {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://13.233.13.19:8080/')], contextPath: 'myapp', war: '**/*.war'
+            }
+        }
+    }
+}
+
