@@ -1,0 +1,8 @@
+---
+- name: Roles Playbooks
+  hosts: all
+  become: yes
+  roles:
+    - pkgs
+    - user
+    - webserver

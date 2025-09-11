@@ -1,0 +1,15 @@
+---
+- name: Mini Project
+  hosts: all
+  tasks:
+    - name: Installing apache
+      yum: name=httpd state=present
+
+    - name: Starting Apache
+      service: name=httpd state=started
+
+    - name: Git Checkout
+      git:
+        repo: https://github.com/ReyazShaik/amazon.git
+        dest: /var/www/html
+

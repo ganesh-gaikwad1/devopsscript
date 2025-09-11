@@ -1,0 +1,11 @@
+---
+- name: Async and poll playbook
+  hosts: all
+  ignore_errors: yes
+  tasks:
+    - name: sleeping
+      command: sleep 30
+      async: 20
+      poll: 10
+    - name: install git
+      yum: name=git state=present

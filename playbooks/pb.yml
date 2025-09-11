@@ -1,0 +1,16 @@
+---
+- name: Install the apache tomcat
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install apache
+      yum:
+        name: httpd
+        state: absent
+    - name: print message
+      debug: msg="installed apche"
+    - name: starting apache
+      service:
+        name: httpd
+        state: started

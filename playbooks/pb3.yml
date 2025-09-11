@@ -1,0 +1,28 @@
+---
+- name: Installing nginx and Starting nginx
+  hosts: all
+  become: yes
+  tasks:
+    - name: Uninstall httpd
+      yum:
+        name: httpd
+        state: absent
+    - name: Installing Nginx
+      yum:
+        name: nginx
+        state: absent
+
+    - name: Starting Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Deploying the webpage
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
+    - name: Restarting nginx
+      service:
+        name: nginx
+        state: restarted
+      

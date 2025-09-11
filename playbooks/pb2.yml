@@ -1,0 +1,10 @@
+---
+- name: Create user and copy the file
+  hosts: all
+  become: yes
+  tasks:
+    - name: Creating user
+      user: name=ganesh state=absent
+    - name: Copying file
+      copy: src=script.py dest=/home/ec2-user/
+

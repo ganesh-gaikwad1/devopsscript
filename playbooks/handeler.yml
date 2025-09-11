@@ -1,0 +1,14 @@
+---
+- name: Install Apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Uninstalling apache
+      yum: name=httpd state=absent
+      notify: Starting apache
+  handlers:
+     - name: Starting apache
+       service: name=httpd state=started
+       ignore_errors: yes
+
+

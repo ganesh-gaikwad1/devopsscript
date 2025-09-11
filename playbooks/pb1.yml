@@ -1,0 +1,13 @@
+---
+- name: Uninstall GIT, Docker and start the docker service
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Uninstall GIT
+      yum: name=git state=absent
+    - name: Uninstall docker
+      yum: name=docker state=absent
+    - name: Starting Docker
+      service: name=docker state=started
+

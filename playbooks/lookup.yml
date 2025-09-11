@@ -1,0 +1,9 @@
+---
+- name: Find the creds
+  hosts: all
+  become: yes
+  vars:
+    creds: "{{lookup('file','/root/creds.txt')}}"
+  tasks:
+   - debug:
+       msg: "My credential are {{creds}}"

@@ -1,0 +1,14 @@
+---
+- name: Install the packages
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Installing apache
+      command: yum install httpd -y
+
+    - name: Installing git
+      shell: yum install git -y
+
+    - name: Installing maven
+      raw: yum install maven -y

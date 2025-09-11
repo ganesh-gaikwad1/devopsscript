@@ -1,0 +1,12 @@
+---
+- name: Install the GIT and Maven
+  hosts: all
+  become: yes
+  vars:
+    a: git
+    b: maven
+  tasks:
+    - name: Uninstalling git
+      yum: name={{a}} state=absent
+    - name: Uninstalling maven
+      yum: name={{b}} state=absent

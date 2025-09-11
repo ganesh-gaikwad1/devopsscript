@@ -1,0 +1,8 @@
+---
+- name: Create users
+  user: name={{item}} state=absent
+  with_items:
+    - Ganesh
+    - Jony
+    - kamalesh
+    - Sham
